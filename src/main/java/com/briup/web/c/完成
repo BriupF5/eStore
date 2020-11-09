@@ -1,0 +1,92 @@
+该学生完成
+购物处理模块:
+   1,购买
+   
+   
+   注:购物车的设计 :
+      1,没有持久化
+      		扩展持久化:
+      		    1,保存到数据库
+      		    2,购物车对象保存到文件中
+      		    	使用当前用户的id 加字符串 作为 Map的key 
+      		    	保存购物车对象到map中 再把整个Map持久化到文件中
+      		    	Map<String,Shopcat> map;
+      		    	  map.put("shop_"+user.getId,shcpcat);
+      		    	
+   	  2,购物车怎么装书籍 
+   	      ShopCat : 内有一个 List<OrderLine> 集合
+   	               每次添加到购物车中的商品  就是添加到了该集合中
+   	  
+   	  3,勾选购物车中的数据提交(购买)
+   	     1,生成订单Order
+   	     2,删除购买的商品信息
+   	   
+   	   
+   	  
+   
+  购物模块:
+	在list.html点击购买/或者在viewBook.html点击购买,触发购物模块代码
+	携带用户点击的商品id发送到servlet中
+	localhsot:8099/estore/addS?id=1
+	加入购物车:
+		在list.jsp 点击  加入购物车?id=值
+		成功把物品加到购物车中以后继续返回list.html页面
+		(要通过servlet间接跳转到list.jsp)
+		
+		servlet:
+			1,登入成功以后 放到环境(session)中ShopCart
+			2,获取请求中参数的书id-->查询到该id对应的Product对象
+			3,获取session环境中的 ShopCat对象,调用方法 把产品(Product)对象放到购物车中
+			4,返回当前的list.jsp,给页面反馈信息(购买成功)
+			    反馈信息: request.setAttribute("msg","xxx商品 加入购物车成功");
+			    alert('${msg}');
+				跳转到显示列表的servelt要携带 栏目id=值 的数据
+		
+		ajax: 异步交互，局部刷新
+		   偷偷发了一个请求去servlet中
+		   var ajax = new XmlHttpRequest();
+		   ajax.open("get","/buy?bookid=1",true);
+		   //回调函数
+		   ajax.onreadstatechange=function(){
+		   	//处理servlet中反馈的结果
+		   	 if(结果=='success'){
+		   	 	alert('加入购物车成功');
+		   	 }
+		   }
+		   ajax.send();
+		   
+		   servlet: 
+		   	1，接受ajax发生过来的数据
+		   	2, 通过书的id 从数据库 找到书 对象
+		   	3,获取sesion中的购物车对象
+		   	4,调用购物车中的方法把书对象添加到购物车中(List<OrderLine>)
+		   	5,反馈结果 : out.writer("success".getBytes());
+		   	6,被ajax的回调函数接受,在回调函数中给弹出框 提示用户
+		   
+		
+	去购物车结算:
+		list.jsp 点击 去购物车结算-->shopCart.jsp(直接跳转到这里)
+
+		shopCart.jsp:获取session容器中的购物车，显示购物车中所有的数据
+		注:购物车中的 一行 就是一个Orderline对象
+	
+	勾选商品去结算:
+		shopcart.jsp--->勾选+点击结算-->confirm.jsp(需要进过servlet 处理 ，当前用户勾选的是哪些订单项，这些订单项需要在confirm.jsp显示)
+
+		servlet:
+			1,接受用户勾选了哪些订单项id
+			2,使用id查询(购物车)对应订单项
+			3,勾选的订单项集合 放到容器中
+			4,跳转confirm.jsp
+		confirm.jsp:获取 订单项集合 显示
+	
+	生成订单:
+		confirm.jsp-->提交订单
+		1,输入收货人信息
+		2,提交
+
+		servlet:生成一个Order对象,需要保持到数据库中
+	
+	查看所有订单
+	
+		

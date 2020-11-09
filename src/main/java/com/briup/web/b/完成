@@ -1,0 +1,61 @@
+该学生完成
+商品信息处理模块:
+   1,首页数据的显示
+   2,登入成功以后的首页显示
+   3,书籍列表页面的显示
+   4,书籍详细信息页面的显示
+   5,杰普新闻的显示
+   
+ 1,首页数据的显示
+    :index.html需要显示完成
+       使用监听器监听application创建(ServletContextListener)，如果创建就向容器中放
+        所有的一级栏目(Cate.java)和一级栏目对应的二级栏目(Catedet.java)
+             一级栏目和二级栏目    Map<一级栏目,List<二级栏目>> map;
+        
+       前三本书(Product.java)，已经所有的杰普简报(Report.java)
+      所有价格区间(Pricescope.java),把上面查询到的所有数据 放到application容器中
+    index.jsp直接从application容器中获取数据显示,
+    使用jstl标签库显示:  
+    	<c:forEach item="${map}" val="entry">
+    		一级栏目:${entry.key}
+    		  一级栏目下的所有二级栏目 : ${entry.value}
+    
+    
+    注:没有用户登入的首页 不能显示 修改用户信息 和 购物车 按钮
+    1,登入成功以后会放登入的用户信息到session中  session.setAttribute("user",user);
+    2,在index.jsp页面判断 session中是否有user对象 : 没有(没有登入,不能显示修改用户信息 和 购物车 按钮)
+    											有(登入了,显示修改用户信息 和 购物车 按钮)
+    3,<c:if test="${! empty user}">
+    
+    
+ 2, 登入成功以后的首页显示
+ 	登入成功的首页，需要显示 修改用户信息 和 购物车 按钮
+ 	并且显示欢迎某用户
+ 	
+ 3,书籍列表页面的显示
+   在index.html点击 一级栏目
+   跳转到list.html页面，要求显示一级栏目下的所有书籍显示
+   在index.html点击二级栏目
+   跳转到list.html页面，要求显示二级栏目下的所有书籍显示
+    servlet:
+		1,根据请求的参数不同 判断用户点击的是一级栏目还是二级栏目
+		2,通过栏目id查询出 栏目下所有的书籍(要在list.jsp显示)
+		3,根据当前查询的所有书籍-->属于的出版社
+		4,把list.jsp需要显示的数据放到容器中
+		5,跳转list.jsp
+	list.jsp:显示数据
+   
+   
+   
+ 4, 在list.html页面点击 某书籍(不是购买按钮),显示书籍的详细页面(viewBook.html)
+        显示详细页面的书籍信息
+  
+ 5,杰普新闻的显示
+ 	在index.html点击右侧的杰普简报，显示详细的杰普简报信息页面(detail.html)
+ 
+    
+    
+    
+    
+    
+        
