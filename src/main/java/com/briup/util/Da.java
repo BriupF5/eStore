@@ -20,9 +20,9 @@ import java.util.List;
 
 public class Da {
 	static String driver = "com.mysql.cj.jdbc.Driver";
-	static String url = "jdbc:mysql://192.168.43.125:3306/bigestore?serverTimezone=Hongkong";
-	static String username = "zs";
-	static String password = "123";
+	static String url = "jdbc:mysql://localhost:3306/bigestore?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	static String username = "root";
+	static String password = "736197080";
 	
 	//后期需要关闭conn stat resultSet
 	static Connection conn;
