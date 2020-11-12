@@ -13,6 +13,7 @@ import org.apache.hadoop.fs.Path;
 public class UpDataHdfs {
 	public static void update(){
 		try {
+			System.setProperty("HADOOP_USER_NAME","mynn");
 			Configuration conf  = new Configuration();
 			conf.set("fs.defaultFS", "hdfs://mynn:9000");
 			FileSystem fs = FileSystem.get(conf);
@@ -41,6 +42,7 @@ public class UpDataHdfs {
 	 * */
 	public static void ttt(){
 		try {
+			System.setProperty("HADOOP_USER_NAME","mynn");
 			Configuration conf  = new Configuration();
 			conf.set("fs.defaultFS", "hdfs://mynn:9000");
 			FileSystem fs = FileSystem.get(conf);
@@ -58,6 +60,7 @@ public class UpDataHdfs {
 	public static void nnn(int i ){
 		try {
 
+			System.setProperty("HADOOP_USER_NAME","mynn");
 			Configuration conf  = new Configuration();
 			conf.set("fs.defaultFS", "hdfs://aaa:9000");
 			FileSystem fs = FileSystem.get(conf);
