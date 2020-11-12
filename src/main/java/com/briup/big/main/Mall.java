@@ -17,6 +17,7 @@ public class Mall {
 	public static void bigin() {
 		try {
 
+			System.setProperty("HADOOP_USER_NAME","mynn");
 			Configuration conf  = new Configuration();
 			conf.set("fs.defaultFS", "hdfs://mynn:9000");
 			FileSystem fs = FileSystem.get(conf);

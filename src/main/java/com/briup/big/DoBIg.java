@@ -28,6 +28,7 @@ public class DoBIg {
 			String sqlTruncate = "truncate table grms";
 			Da.exist(sqlTruncate);
 
+			System.setProperty("HADOOP_USER_NAME","mynn");
 			Configuration conf  = new Configuration();
 			conf.set("fs.defaultFS", "hdfs://mynn:9000");
 			FileSystem fs = FileSystem.get(conf);

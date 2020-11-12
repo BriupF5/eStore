@@ -23,6 +23,7 @@ public class M7 extends Configured implements Tool {
 
 	@Override
 	public int run(String[] args) throws Exception {
+		System.setProperty("HADOOP_USER_NAME","mynn");
 		Configuration conf  = new Configuration();
 		conf.set("fs.defaultFS", "hdfs://mynn:9000");
 		
