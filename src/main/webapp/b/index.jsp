@@ -18,7 +18,7 @@
 		<c:if test="${! empty user }">
 			<div class="top_center">
 	    		<ul class="top_lr">
-	            	<li><a>欢迎  ${user.username} </a></li>
+	            	<li><a href="a/userinfo.jsp">欢迎  ${user.username} </a></li>
 	            </ul>
 	            <ul class="top_bars">
 	            	<li><a href="logout">退出</a>|</li>
