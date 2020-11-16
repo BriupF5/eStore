@@ -73,8 +73,4 @@ public class UpDataHdfs {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) throws Exception {
-		//nnn(7);
-		ttt();
-	}
 }

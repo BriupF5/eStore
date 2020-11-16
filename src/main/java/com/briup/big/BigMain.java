@@ -29,6 +29,6 @@ public class BigMain {
 				
 			}
 		};
-		t.schedule(task, 1, 1000*60*3);
+		t.schedule(task, 1, 1000*60);
 	}
 }

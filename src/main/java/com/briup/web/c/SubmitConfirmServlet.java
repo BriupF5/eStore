@@ -60,6 +60,7 @@ public class SubmitConfirmServlet extends HttpServlet {
 		order.setReceivephone(tel);
 		Da.update(order);
 
+
 		
 		String olsql = "select * from orderline where orderid='"+order.getId()+"'";
 		List<Orderline> olist = Da.query(olsql, Orderline.class);

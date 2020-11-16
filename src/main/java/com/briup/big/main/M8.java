@@ -48,7 +48,7 @@ public class M8 extends Configured implements Tool {
 		job8.setOutputFormatClass(DBOutputFormat.class);
 	
 		//给job指定连接数据库的信息,需要导入对应数据库的jar包
-		DBConfiguration.configureDB(job8.getConfiguration(), "com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost:3306/bigestore?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "736197080");
+		DBConfiguration.configureDB(job8.getConfiguration(), "com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost:3306/bigestore?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "root");
 		
 		//把Reduce的输出结果，给t表的id列和name列
 		DBOutputFormat.setOutput(job8, "grms", "usid","proid","num");

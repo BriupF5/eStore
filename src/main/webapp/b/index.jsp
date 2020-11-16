@@ -102,10 +102,9 @@
             	</div>
             </div>
             <div class="c3_b1_right">
-            	<h1>杰普快报</h1>
+            	<h1>新闻资讯</h1>
             	<ul>
-                	<li><a href="#">〈加措〉相信这一切都是对我们最好的安排  </a></li>
-                	<li><a href="#">〈加措〉相信这一切都是对我们最好的安排  </a></li>
+                	<li><a href="#">双十一来临，书籍补贴开启领取</a></li>
                 </ul>
             </div>
             <div style="clear:both"></div>

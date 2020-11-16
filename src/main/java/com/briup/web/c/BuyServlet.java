@@ -52,7 +52,7 @@ public class BuyServlet extends HttpServlet {
 		// 把最新的购物车重新放一遍
 		session.setAttribute("car", car);
 
-		// 和B模块同学商量，把点击某栏目下要显示的所有商品，都放到session中
+		// 把点击某栏目下要显示的所有商品，都放到session中
 		request.getRequestDispatcher("b/list.jsp").forward(request, response);
 
 	}

@@ -71,7 +71,6 @@ public class GoconfirmServlet extends HttpServlet {
 		// 订单保存到数据库
 		// 所有的订单项也要保存到数据库
 		Da.save(order);
-		
 	
 		int sum = 0;
 		for (Orderline ol : list) {
