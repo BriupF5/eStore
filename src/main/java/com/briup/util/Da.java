@@ -22,7 +22,7 @@ public class Da {
 	static String driver = "com.mysql.cj.jdbc.Driver";
 	static String url = "jdbc:mysql://localhost:3306/bigestore?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 	static String username = "root";
-	static String password = "736197080";
+	static String password = "root";
 	
 	//后期需要关闭conn stat resultSet
 	static Connection conn;
