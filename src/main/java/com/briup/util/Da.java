@@ -152,7 +152,7 @@ public class Da {
 	/**
 	 * 更新<br>
 	 * 和保存类似<br>
-	 * update s_emp 
+	 * update s_emp
 	 * set last_name = ? , salary = ?
 	 * where id = ?
 	 * */
@@ -264,10 +264,66 @@ public class Da {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+
+
+
+	/**
+	 * 保存<br>jdbc 完成保存：<br>
+	 * Statment :
+	 * PreparedStatment :
+	 *
+	 * */
+	public static <T> void change(T t){
+		Class<? extends Object> c = t.getClass();
+		//本次获得连接
+		getConn();
+		StringBuffer sql = new StringBuffer("replace into ");
+		String tableName = getTableName(c);
+		sql.append(tableName);
+		sql.append("(");
+		//insert into t(id,name) values(1,'tom');
+		//对象下所有的属性
+		String objectFields = getObjectFields(c);
+		sql.append(objectFields);
+		sql.append(")");
+		sql.append(" values").append("(");
+		String[] split = objectFields.split("[,]");
+		//有length个属性，也就是有length个?号占位符
+		int length = split.length;
+		for(int i =0;i<length;i++){
+			sql.append("?").append(",");
+		}
+		//去除最后一个,
+		sql = sql.delete(sql.length()-1, sql.length());
+		sql.append(")");
+		System.out.println(sql.toString());
+
+		try {
+			//获得预编译对象
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			//给预编译对象ps中的每个?都设置值
+			for(int i = 1;i<=length;i++){
+				String fieldName = split[i-1];
+				String methodName = getMethodName("get",fieldName);
+				//获得参数对象 中某个属性对应的get属性方法
+				Method method = c.getMethod(methodName);
+				//调用该get方法
+				Object invoke = method.invoke(t);
+				ps.setObject(i, invoke);
+			}
+			//执行sql
+			ps.execute();
+			//调用私有方法 ，关闭所有资源
+			close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+
 	/**
 	 * 删除t类的id值<br>
 	 * t类对应哪个表<br>

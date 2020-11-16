@@ -41,13 +41,6 @@
                     	<input type="submit" value="登陆"/>
                     </div>
                  </form>
-                    <div>
-                    	请使用合作网站账号登陆杰普电子商务网：
-                    </div>
-                    <div class="com_box">
-                    	<span class="tencent"></span>
-                        
-                    </div>
                 </div>
             </div>
         </div>
